@@ -57,9 +57,36 @@ This analysis can help:
 · Researchers study streaming platform content patterns
 · Data analysts learn advanced SQL techniques
 
-📋 SQL Queries
+## 📋 SQL Queries
 
-1. Count the number of Movies vs TV Shows
+### Database Creation & Table Setup
+
+```sql
+-- Create Netflix table structure
+CREATE TABLE netflix(  
+    show_id VARCHAR(10),  
+    type VARCHAR(10),  
+    title VARCHAR(150),  
+    director VARCHAR(250),  
+    casts VARCHAR(1000),  
+    country VARCHAR(150),  
+    date_added VARCHAR(50),  
+    release_year INT,  
+    rating VARCHAR(10),  
+    duration VARCHAR(15),  
+    listed_in VARCHAR(150),  
+    description VARCHAR(250)  
+);
+```
+
+```sql
+-- View all data from Netflix table
+SELECT * FROM netflix;
+```
+
+## Business Problems and Solutions
+
+### 1. Count the number of Movies vs TV Shows
 
 ```sql
 SELECT
@@ -69,7 +96,7 @@ FROM netflix
 GROUP BY type;
 ```
 
-2. Find the most common rating for movies and TV shows
+### 2. Find the most common rating for movies and TV shows
 
 ```sql
 SELECT
@@ -87,7 +114,7 @@ FROM (
 WHERE ranking = 1;
 ```
 
-3. List all movies released in a specific year (e.g., 2020)
+### 3. List all movies released in a specific year (e.g., 2020)
 
 ```sql
 SELECT
@@ -96,7 +123,7 @@ FROM netflix
 WHERE type = 'Movie' and release_year = 2020;
 ```
 
-4. Find the top 5 countries with the most content on Netflix
+### 4. Find the top 5 countries with the most content on Netflix
 
 ```sql
 SELECT
@@ -108,7 +135,7 @@ GROUP BY ltrim(UNNEST(STRING_TO_ARRAY(country, ',')))
 LIMIT 5;
 ```
 
-5. Identify the longest movie
+### 5. Identify the longest movie
 
 ```sql
 SELECT
@@ -126,7 +153,7 @@ GROUP BY 1
 ORDER BY 2 DESC;
 ```
 
-6. Find content added in the last 5 years
+### 6. Find content added in the last 5 years
 
 ```sql
 SELECT
@@ -136,7 +163,7 @@ FROM netflix
 WHERE TO_DATE(date_added, 'Month DD - YY') >= CURRENT_DATE - INTERVAL '5 YEARS';
 ```
 
-7. Find all the movies/TV shows by director 'Rajiv Chilaka'
+### 7. Find all the movies/TV shows by director 'Rajiv Chilaka'
 
 ```sql
 SELECT
@@ -145,7 +172,7 @@ FROM netflix
 WHERE director ILIKE '%Rajiv Chilaka%';
 ```
 
-8. List all TV shows with more than 5 seasons
+### 8. List all TV shows with more than 5 seasons
 
 ```sql
 SELECT
@@ -154,7 +181,7 @@ FROM netflix
 WHERE type = 'TV Show' AND SPLIT_PART(duration, ' ', 1) :: NUMERIC > 5;
 ```
 
-9. Count the number of content items in each genre
+### 9. Count the number of content items in each genre
 
 ```sql
 SELECT
@@ -165,7 +192,7 @@ GROUP BY UNNEST(STRING_TO_ARRAY(listed_in, ', '))
 ORDER BY COUNT(*) DESC;
 ```
 
-10. Find each year and the average numbers of content release in India on Netflix
+### 10. Find each year and the average numbers of content release in India on Netflix
 
 ```sql
 SELECT
@@ -177,7 +204,7 @@ WHERE country = 'India'
 GROUP BY 1;
 ```
 
-11. List all movies that are documentaries
+### 11. List all movies that are documentaries
 
 ```sql
 SELECT *
@@ -185,7 +212,7 @@ FROM netflix
 WHERE listed_in ILIKE '%Documentaries%';
 ```
 
-12. Find all content without a director
+### 12. Find all content without a director
 
 ```sql
 SELECT *
@@ -193,7 +220,7 @@ FROM netflix
 WHERE director IS NULL;
 ```
 
-13. Find how many movies actor 'Salman Khan' appeared in last 10 years
+### 13. Find how many movies actor 'Salman Khan' appeared in last 10 years
 
 ```sql
 SELECT
@@ -202,7 +229,7 @@ FROM netflix
 WHERE casts ILIKE '%Salman Khan%' AND release_year > EXTRACT(YEAR FROM CURRENT_DATE) - 10;
 ```
 
-14. Find the top 10 actors who have appeared in the highest number of movies produced in India
+### 14. Find the top 10 actors who have appeared in the highest number of movies produced in India
 
 ```sql
 SELECT
@@ -215,7 +242,7 @@ ORDER BY COUNT(*) DESC
 LIMIT 10;
 ```
 
-15. Categorize content based on keywords in description
+### 15. Categorize content based on keywords in description
 
 ```sql
 SELECT
@@ -246,5 +273,22 @@ Usage
 4. Modify parameters as needed for your analysis
 
 ---
+## About the Author
 
+Data Analyst | SQL Specialist
+
+Passionate about transforming raw data into meaningful insights through SQL and data storytelling. I enjoy exploring entertainment trends and building analytical solutions.
+
+Connect with me:
+
+### • LinkedIn [Connect with me professionally](https://www.linkedin.com/in/emodi-emeka-8ba2071b2?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
+### • Twitter [Let's connect](https://x.com/Emodi__E?t=tCstz-0wZgSynu8gjOXnfg&s=09)
+
+Open to:
+
+· Data Analyst opportunities
+· SQL and analytics projects
+· Collaborative data initiatives
+
+"Turning data into decisions, one query at a time."
 Explore the world of Netflix content through data-driven insights!
