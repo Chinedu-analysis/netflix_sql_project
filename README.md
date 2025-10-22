@@ -1,6 +1,6 @@
 # Netflix Data Analysis Project
 
-1[Netflix Logo]()
+1[Netflix Logo](https://github.com/Chinedu-analysis/netflix_sql_project/blob/main/logo.png)
 
 A comprehensive SQL-based analysis of Netflix's content catalog, exploring various aspects of movies and TV shows available on the streaming platform.
 
